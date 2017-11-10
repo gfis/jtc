@@ -1,8 +1,7 @@
-/*  
+/*  Multiply 4 long numbers 4 times
  *  Java Training Course example file
- *  09.11.2017, Georg Fischer
- */
-/*
+ *  2017-11-09, Georg Fischer
+ *
  * Copyright 2017 Georg Fischer <dr.georg.fischer at gmail.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,8 +18,8 @@
  */
 
 /**
- *  
- *  @author Georg Fischer <dr.georg.fischer at gmail.com>
+ * 
+ * @author Georg Fischer <dr.georg.fischer at gmail.com>
  */
 public class LongMultiply {
 
