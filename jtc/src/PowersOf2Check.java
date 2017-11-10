@@ -1,6 +1,6 @@
 /* Compute powers of 2: 1, 2, 4, 8, 16, 32, 64 ...
  * Java Training Course example file
- * 2017-11-06, Georg Fischer
+ * 2017-11-06 , Georg Fischer
  *
  * Copyright 2017 Georg Fischer <dr.georg.fischer at gmail.com>.
  *
@@ -19,23 +19,27 @@
 
 /**
  * Compute powers of 2: 1, 2, 4, 8, 16, 32, 64 ...
+ *
  * @author Georg Fischer &lt;dr.georg.fischer at gmail.com&lt;
  */
-public class PowersOf2 {
+public class PowersOf2Check {
 
     /**
-     * Test program
-     * @param args commandline arguments (ignored). Results are correct up to
-     * 2**30, 2**31 is negative, and above there are zeroes.
+     * Test program.
+     *
+     * @param args commandline arguments (ignored).
+     * Powers will be written up to 2**30.
      */
     public static void main(String[] args) {
+        int previousValue = 0;
+        int currentValue = 1;
         int exponent = 0;
-        int value = 1;
-        while (exponent <= 36) {
-            System.out.println(String.format("%4d %16d", exponent, value));
-            exponent = exponent + 1;
-            value = value * 2;
+        while (exponent <= 36 && previousValue < currentValue) {
+            System.out.println(String.format("%4d %16d", exponent, currentValue));
+            previousValue = currentValue;
+            currentValue *= 2;
+            exponent++;
         } // while exponent
     } // main
 
-} // PowersOf2
+} // PowersOf2Check

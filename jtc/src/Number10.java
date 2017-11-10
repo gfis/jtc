@@ -1,6 +1,6 @@
 /* Spell the numbers up to 10 in indonese
  * Java Training Course example file
- * 2017-11-10 , Georg Fischer
+ * 2017-11-10, Georg Fischer
  *
  * Copyright 2017 Georg Fischer <dr.georg.fischer at gmail.com>.
  *
@@ -18,18 +18,21 @@
  */
 
 /**
- * Spell the numbers up to 10 in indonese-
+ * Spell the numbers up to 10 in indonesian language.
+ *
  * @author Georg Fischer &lt;dr.georg.fischer at gmail.com&gt;
  */
 public class Number10 {
 
     /**
-     *  Test program
-     *  @param args commandline arguments: a number &lt;= 10
+     * Test program
+     *
+     * @param args commandline arguments: a number &lt;= 10. Result with the
+     * default argument is "sembilan".
      */
     public static void main(String[] args) {
         if (args.length == 0) { // set default arguments
-            args = new String[] { "9" };
+            args = new String[]{"9"};
         } // set default arguments
         int num = Integer.parseInt(args[0]);
         String word = "";

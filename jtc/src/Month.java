@@ -1,4 +1,4 @@
-/* Convert the number of a month to its name
+/* Convert the number of a month to its indonesian name
  * Java Training Course example file
  * 2017-11-10, Georg Fischer
  *
@@ -17,23 +17,24 @@
  * limitations under the License. */
 
 /**
- * Convert the number of a month to its name
+ * Convert the number of a month to its indonesian name
+ *
  * @author Georg Fischer &lt;dr.georg.fischer at gmail.com>&gt;
  */
 public class Month {
 
     /**
-     * Test program
+     * Test program. Result with the default argument is "Juni".
      *
-     * @param args commandline arguments: the number of a month
+     * @param args commandline arguments: the number of a month (1-12).
      */
     public static void main(String[] args) {
         if (args.length == 0) { // set default arguments
-            args = new String[]{"6", "", "", ""};
+            args = new String[]{"6"};
         } // set default arguments
-        int num = Integer.parseInt(args[0]);
+        int number = Integer.parseInt(args[0]);
         String monthName = "";
-        switch (num) {
+        switch (number) {
             case 1:
                 monthName = "Januari";
                 break;
@@ -70,9 +71,10 @@ public class Month {
             case 12:
                 monthName = "Desember";
                 break;
-        }
+            default:
+                monthName = String.valueOf(number);
+        } // switch
         System.out.println(monthName);
-
     } // main
 
 } // Month

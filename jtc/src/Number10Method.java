@@ -1,4 +1,4 @@
-/* Spell the numbers up to 10 in indonese
+/* Spell the numbers up to 10 in indonesian language
  * Java Training Course example file
  * 2017-11-10, Georg Fischer
  *
@@ -17,7 +17,7 @@
  * limitations under the License. */
 
 /**
- * Spell the numbers up to 10 in indonese, using a Java method
+ * Spell the numbers up to 10 in indonesian language, using a Java method
  *
  * @author Georg Fischer &lt;dr.georg.fischer at gmail.com&gt;
  */
@@ -26,8 +26,8 @@ public class Number10Method {
     /**
      * Convert a number up to 10 into a word in indonese.
      *
-     * @param num number to be converted, less than 11
-     * @return indonese number word
+     * @param num number to be converted, less than 11.
+     * @return indonesian number word
      */
     public static String speakNumber(int num) {
         String word = "";
@@ -73,13 +73,14 @@ public class Number10Method {
     } // speakNumber
 
     /**
-     * Test program
+     * Test program.
      *
-     * @param args commandline arguments: a number´&lt;= 10
+     * @param args commandline arguments: a number &lt;= 10. Result with the
+     * default argument is "sembilan".
      */
     public static void main(String[] args) {
         if (args.length == 0) { // set default arguments
-            args = new String[] { "10" };
+            args = new String[] { "9" };
         } // set default arguments
         int num = Integer.parseInt(args[0]);
         String word = speakNumber(num);

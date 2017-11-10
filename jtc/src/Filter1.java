@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Read lines and replace all vowels by aha, ele etc.
+ * Read lines and replace all vowels by "aha", "ele" etc.
  *
  * @author Georg Fischer &lt;dr.georg.fischer at gmail.com&gt;
  */
