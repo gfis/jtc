@@ -114,7 +114,7 @@ public class FilterNumber {
                 if (line == null) {
                     busy = false;
                 } else { // process line
-                    line = process(line);
+                    process(line);
                 } // process line
             } // while busy
         } catch (IOException exc) {
