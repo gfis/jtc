@@ -14,7 +14,10 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. */
+ * limitations under the License. 
+*/
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * 
@@ -72,6 +75,11 @@ public class Age {
         int month  = getMonthNumber  (args[1]);
         int year   = Integer.parseInt(args[2]);
         System.out.println("day=" + day + ", month=" + month + ", year=" + year);
+        
+        Date currentDate = new Date();
+        String timestamp = (new SimpleDateFormat("yyyy-MM-dd' 'HH:mm:ss"))
+                .format(currentDate);
+        System.out.println(timestamp);
     } // main
 
 } // Age
