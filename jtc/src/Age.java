@@ -21,6 +21,17 @@
  * @author Georg Fischer &lt;dr.georg.fischer at gmail.com&gt;
  */
 public class Age {
+    
+    /** Get a month's number from its name
+     * @param monthName month's name, or the first 3 letters of it
+     * @return number of the month: 1 to 12
+     */
+    public static int getMonthNumber(String monthName) {
+        int result = 0;
+        
+        
+        return result;
+    } // getMonthNumber
 
     /**
      * Test program
@@ -28,7 +39,7 @@ public class Age {
      */
     public static void main(String[] args) {
         if (args.length == 0) { // set default arguments
-            args = new String[] { "", "", "", "" };
+            args = new String[] { "29", "Jun", "1947", "" };
         } // set default arguments
 
     } // main
