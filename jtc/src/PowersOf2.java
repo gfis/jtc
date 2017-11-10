@@ -1,8 +1,7 @@
-/*  
- *  Java Training Course example file
- *  2017-00-09 , Georg Fischer
- */
-/*
+/* Compute powers of 2: 1, 2, 4, 8, 16, 32, 64 ...
+ * Java Training Course example file
+ * 2017-11-06 , Georg Fischer
+ *
  * Copyright 2017 Georg Fischer <dr.georg.fischer at gmail.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,17 +18,23 @@
  */
 
 /**
- *  
- *  @author Georg Fischer <dr.georg.fischer at gmail.com>
+ * Compute powers of 2: 1, 2, 4, 8, 16, 32, 64 ...
+ * @author Georg Fischer <dr.georg.fischer at gmail.com>
  */
 public class PowersOf2 {
 
     /**
-     *  Test program
-     *  @param args commandline arguments
+     * Test program
+     * @param args commandline arguments (ignored)
      */
     public static void main(String[] args) {
-
+        int exponent = 0;
+        int value = 1;
+        while (exponent <= 36) {
+            System.out.println(String.format("%4d %16d", exponent, value));
+            exponent = exponent + 1;
+            value = value * 2;
+        } // while exponent
     } // main
 
 } // PowersOf2

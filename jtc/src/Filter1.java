@@ -1,8 +1,7 @@
-/*  
- *  Java Training Course example file
- *  2017-11-09 , Georg Fischer
- */
-/*
+/* Concatenate 4 strings 4 times
+ * Java Training Course example file
+ * 2017-11-09, Georg Fischer
+ *
  * Copyright 2017 Georg Fischer <dr.georg.fischer at gmail.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,17 +18,21 @@
  */
 
 /**
- *  
- *  @author Georg Fischer <dr.georg.fischer at gmail.com>
+ * Concatenates 4 strings on the commandline 4 times
+ *
+ * @author Georg Fischer <dr.georg.fischer at gmail.com>
  */
 public class Filter1 {
 
     /**
-     *  Test program
-     *  @param args commandline arguments
+     * Test program
+     *
+     * @param args commandline arguments: 4 words
      */
     public static void main(String[] args) {
-
+        String sum = args[0] + " " + args[1] + " " + args[2] + " " + args[3] + " ";
+        String sum2 = sum + sum + sum + sum;
+        System.out.println(sum2);
     } // main
 
 } // Filter1
