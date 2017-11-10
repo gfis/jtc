@@ -1,6 +1,6 @@
 /* Concatenates 4 words on the commandline 4 times
  * Java Training Course example file
- * 2017-11-10 , Georg Fischer
+ * 2017-11-10, Georg Fischer
  *
  * Copyright 2017 Georg Fischer <dr.georg.fischer at gmail.com>.
  *
@@ -18,14 +18,14 @@
  */
 
 /**
- * Concatenates 4 words on the commandline 4 times
+ * Concatenates 4 words on the commandline 4 times.
  * @author Georg Fischer <dr.georg.fischer at gmail.com>
  */
 public class StringAdd {
 
     /**
-     *  Test program
-     *  @param args commandline arguments: 4 words
+     * Test program
+     * @param args commandline arguments: 4 words
      */
     public static void main(String[] args) {
         if (args.length == 0) { // set default arguments

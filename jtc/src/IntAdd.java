@@ -22,6 +22,11 @@
  */
 public class IntAdd { 
     
+    /**
+     * Test program
+     * @param args commandline arguments: 4 words
+     * Result with the default values is 40.
+     */
     public static void main(String[] args) {
         if (args.length == 0) { // set default arguments
             args = new String[] { "1", "2", "3", "4" };

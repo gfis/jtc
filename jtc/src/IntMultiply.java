@@ -27,6 +27,7 @@ public class IntMultiply {
      * Test Program
      *
      * @param args commandline arguments: 4 numbers
+     * Result with the default arguments is 331776.
      */
     public static void main(String[] args) {
         if (args.length == 0) { // set default arguments
