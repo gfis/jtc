@@ -19,7 +19,7 @@
 
 /**
  * Compute powers of 2: 1, 2, 4, 8, 16, 32, 64 ...
- * @author Georg Fischer <dr.georg.fischer at gmail.com>
+ * @author Georg Fischer &lt;dr.georg.fischer at gmail.com&lt;
  */
 public class PowersOf2 {
 

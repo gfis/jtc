@@ -19,15 +19,18 @@
 
 /**
  * Spell the numbers up to 10 in indonese-
- * @author Georg Fischer <dr.georg.fischer at gmail.com>
+ * @author Georg Fischer &lt;dr.georg.fischer at gmail.com&gt;
  */
 public class Number10 {
 
     /**
      *  Test program
-     *  @param args commandline arguments: a number ´&lt;= 10
+     *  @param args commandline arguments: a number &lt;= 10
      */
     public static void main(String[] args) {
+        if (args.length == 0) { // set default arguments
+            args = new String[] { "9" };
+        } // set default arguments
         int num = Integer.parseInt(args[0]);
         String word = "";
         switch (num) {

@@ -1,6 +1,5 @@
 /** Computes the greatest common divisor with Euclid's algorithm
  *
- * @(#) $Id$ 
  * 2017-11-06, JTC example
  * @author Georg Fischer
  */

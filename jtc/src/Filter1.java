@@ -1,4 +1,4 @@
-/* Concatenate 4 strings 4 times
+/* Read lines and replace all vowels by 3 letters
  * Java Training Course example file
  * 2017-11-09, Georg Fischer
  *
@@ -16,23 +16,46 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
- * Concatenates 4 strings on the commandline 4 times
+ * Read lines and replace all vowels by aha, ele etc.
  *
- * @author Georg Fischer <dr.georg.fischer at gmail.com>
+ * @author Georg Fischer &lt;dr.georg.fischer at gmail.com&gt;
  */
 public class Filter1 {
 
     /**
-     * Test program
+     * Test program: Filters standard input and writes it to standard output.
      *
-     * @param args commandline arguments: 4 words
+     * @param args commandline arguments
      */
     public static void main(String[] args) {
-        String sum = args[0] + " " + args[1] + " " + args[2] + " " + args[3] + " ";
-        String sum2 = sum + sum + sum + sum;
-        System.out.println(sum2);
+        if (args.length == 0) { // set default arguments
+            args = new String[]{"", "", "", ""};
+        } // set default arguments
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            boolean busy = true;
+            while (busy) {
+                String line = reader.readLine();
+                if (line == null) {
+                    busy = false;
+                } else { // process line
+                    line = line
+                            .replaceAll("a", "aha")
+                            .replaceAll("e", "ele")
+                            .replaceAll("i", "iti")
+                            .replaceAll("o", "obo")
+                            .replaceAll("u", "uku");
+                    System.out.println(line);
+                } // process line
+            } // while busy
+        } catch (IOException exc) {
+            System.err.println(exc.getMessage());
+        } // try
     } // main
 
 } // Filter1

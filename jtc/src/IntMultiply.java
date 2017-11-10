@@ -19,7 +19,7 @@
 
 /**
  * Multiplies the 4 numbers on the commandline 4 times.
- * @author Georg Fischer <dr.georg.fischer at gmail.com>
+ * @author Georg Fischer &lt;dr.georg.fischer at gmail.com&gt;
  */
 public class IntMultiply {
 
