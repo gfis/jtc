@@ -67,8 +67,8 @@ public class Rational {
      * No-args constructor, creates 1/1
      */
     public Rational() {
-        numerator = 1;
-        denominator = 1;
+        this.numerator = 1;
+        this.denominator = 1;
     } // no-args constructor
 
     /**
@@ -77,8 +77,8 @@ public class Rational {
      * @param a numerator
      */
     public Rational(int a) {
-        numerator = a;
-        denominator = 1;
+        this.numerator = a;
+        this.denominator = 1;
     } // constructor(int)
 
     /**
@@ -88,8 +88,8 @@ public class Rational {
      * @param b denominator
      */
     public Rational(int a, int b) {
-        numerator = a;
-        denominator = b;
+        this.numerator = a;
+        this.denominator = b;
     } // constructor(int, int)
 
     /**
@@ -103,8 +103,8 @@ public class Rational {
             str += "/1";
             slashPos = str.length() - 2;
         }
-        numerator = Integer.parseInt(str.substring(0, slashPos));
-        denominator = Integer.parseInt(str.substring(slashPos + 1));
+        this.numerator = Integer.parseInt(str.substring(0, slashPos));
+        this.denominator = Integer.parseInt(str.substring(slashPos + 1));
     } // constructor(String)
 
     //----------------
@@ -132,6 +132,19 @@ public class Rational {
     // Public methods
     //----------------
     /**
+     * Returns the absolute value of <em>this</em> Rational.
+     *
+     * @return abs(this)
+     */
+    public Rational abs() {
+        Rational result = this;
+        if (result.numerator < 0) {
+            result = result.negate();
+        }
+        return result;
+    } // abs()
+
+    /**
      * Returns the sum of <em>this</em> Rational and a second.
      *
      * @param rat2 2nd Rational
@@ -146,6 +159,35 @@ public class Rational {
         return (new Rational(sum, lcmb)).reduce();
     } // add(Rational)
 
+    /**
+     * Compares <em>this</em> Rational with a second.
+     *
+     * @param rat2 2nd Rational
+     * @return -1 if this &lt; rat2, 0 if this == rat2, +1 if this > rat2
+     */
+    public int compareTo(Rational rat2) {
+        int result = 0;
+        if () {
+        } else if () {
+        } else {
+        }
+        return result;
+    } // compareTo(Rational)
+    
+    /**
+     * Determines whether <em>this</em> Rational is equal to a second.
+     *
+     * @param rat2 2nd Rational
+     * @return (this == rat2)
+     */
+    public boolean equals(Rational rat2) {
+        boolean result = false;
+        if (   ) {
+            result = true;
+        }
+        return result;
+    } // equals(Rational)
+    
     /**
      * Returns the quotient of <em>this</em> Rational and a second.
      *
