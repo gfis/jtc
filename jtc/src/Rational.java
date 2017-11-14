@@ -167,9 +167,13 @@ public class Rational {
      */
     public int compareTo(Rational rat2) {
         int result = 0;
-        if () {
-        } else if () {
+        Rational difference = this.subtract(rat2);
+        if (difference.numerator < 0) {
+            result = -1;
+        } else if (difference.numerator == 0) {
+            result = 0;
         } else {
+            result = +1;
         }
         return result;
     } // compareTo(Rational)
@@ -182,7 +186,7 @@ public class Rational {
      */
     public boolean equals(Rational rat2) {
         boolean result = false;
-        if (   ) {
+        if (this.compareTo(rat2) == 0) {
             result = true;
         }
         return result;
