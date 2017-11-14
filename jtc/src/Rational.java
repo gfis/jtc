@@ -241,6 +241,34 @@ public class Rational {
     } // lcm(int,int)
 
     /**
+     * Returns the maximum of <em>this</em> Rational and a second.
+     *
+     * @param rat2 2nd Rational
+     * @return the bigger one
+     */
+    public Rational max(Rational rat2) {
+        Rational result = this;
+        if (this.compareTo(rat2) < 0) {
+            result = rat2;
+        }
+        return result;
+    } // max(Rational)
+
+    /**
+     * Returns the minimum of <em>this</em> Rational and a second.
+     *
+     * @param rat2 2nd Rational
+     * @return the bigger one
+     */
+    public Rational min(Rational rat2) {
+        Rational result = this;
+        if (this.compareTo(rat2) > 0) {
+            result = rat2;
+        }
+        return result;
+    } // min(Rational)
+
+    /**
      * Returns the product of <em>this</em> Rational and a second.
      *
      * @param rat2 2nd Rational
@@ -330,6 +358,10 @@ public class Rational {
             System.out.println(str0 + " - " + str1 + " = " + rat0.subtract(rat1).toString());
             System.out.println(str0 + " * " + str1 + " = " + rat0.multiply(rat1).toString());
             System.out.println(str0 + " / " + str1 + " = " + rat0.divide(rat1).toString());
+            System.out.println("(" + str0 + ").compareTo(" + str1 + ") = " + rat0.compareTo(rat1));
+            System.out.println("(" + str0 + ").equals(" + str1 + ") = " + rat0.equals(rat1));
+            System.out.println("(" + str0 + ").max(" + str1 + ") = " + rat0.max(rat1));
+            System.out.println("(" + str0 + ").min(" + str1 + ") = " + rat0.min(rat1));
             System.out.println();
             str0 = str1;
             rat0 = rat1;
