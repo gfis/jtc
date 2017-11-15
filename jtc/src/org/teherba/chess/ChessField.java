@@ -105,6 +105,7 @@ public class ChessField {
     /**
      * Constructor with position
      * @param position position of the new field
+     * @param piece piece to be set on the field, or NO_PIECE
      */
     public ChessField(String position, String piece) {
         this(position);
@@ -120,6 +121,14 @@ public class ChessField {
             this.color = WHITE;
         }
     } // setColor
+
+    /** Set the piece of the field
+     * 
+     * @param piece one of the constants BLACK_PAWN etc.
+     */
+    public void setPiece(String piece) {
+        this.piece = piece;
+    } // setPiece
 
     /**
      * Test program.
