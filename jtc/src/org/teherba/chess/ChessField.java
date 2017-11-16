@@ -76,7 +76,7 @@ public class ChessField {
      * No-args constructor: no piece on it
      */
     public ChessField() {
-        setPiece(ChessPiece.NO_PIECE);
+        // setPiece(ChessPiece.NO_PIECE);
     } // constructor ChessField()
 
     private static String letters = "abcdefgh";
@@ -118,7 +118,7 @@ public class ChessField {
      */
     public ChessField(String position, String piece) {
         this(position);
-        setPiece(piece);
+        // setPiece(piece);
     } // Constructor(position, piece)
 
     public void setColor() {
