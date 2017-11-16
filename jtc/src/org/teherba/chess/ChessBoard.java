@@ -40,33 +40,76 @@ public class ChessBoard {
         
         row = 1; 
         for (col = 0; col < 8; col ++) {
-            board[row][col].setPiece(ChessField.WHITE_PAWN);
+            setPiece(row, col, new ChessPiece(ChessPiece.WHITE_PAWN));
         } // for col
         row = 6; 
         for (col = 0; col < 8; col ++) {
-            board[row][col].setPiece(ChessField.BLACK_PAWN);
+            setPiece(row, col, new ChessPiece(ChessPiece.BLACK_PAWN));
         } // for col
         
-        board[0][0].setPiece(ChessField.WHITE_ROOK);
-        board[0][7].setPiece(ChessField.WHITE_ROOK);
-        board[7][0].setPiece(ChessField.BLACK_ROOK);
-        board[7][7].setPiece(ChessField.BLACK_ROOK);
+        setPiece(0, 0, new ChessPiece(ChessPiece.WHITE_ROOK));
+        setPiece(0, 7, new ChessPiece(ChessPiece.WHITE_ROOK));
+        setPiece(7, 0, new ChessPiece(ChessPiece.BLACK_ROOK));
+        setPiece(7, 7, new ChessPiece(ChessPiece.BLACK_ROOK));
         
-        board[0][1].setPiece(ChessField.WHITE_KNIGHT);
-        board[0][6].setPiece(ChessField.WHITE_KNIGHT);
-        board[7][1].setPiece(ChessField.BLACK_KNIGHT);
-        board[7][6].setPiece(ChessField.BLACK_KNIGHT);
+        setPiece(0, 1, new ChessPiece(ChessPiece.WHITE_KNIGHT));
+        setPiece(0, 6, new ChessPiece(ChessPiece.WHITE_KNIGHT));
+        setPiece(7, 1, new ChessPiece(ChessPiece.BLACK_KNIGHT));
+        setPiece(7, 6, new ChessPiece(ChessPiece.BLACK_KNIGHT));
         
-        board[0][2].setPiece(ChessField.WHITE_BISHOP);
-        board[0][5].setPiece(ChessField.WHITE_BISHOP);
-        board[7][2].setPiece(ChessField.BLACK_BISHOP);
-        board[7][5].setPiece(ChessField.BLACK_BISHOP);
+        setPiece(0, 2, new ChessPiece(ChessPiece.WHITE_BISHOP));
+        setPiece(0, 5, new ChessPiece(ChessPiece.WHITE_BISHOP));
+        setPiece(7, 2, new ChessPiece(ChessPiece.BLACK_BISHOP));
+        setPiece(7, 5, new ChessPiece(ChessPiece.BLACK_BISHOP));
         
-        board[0][3].setPiece(ChessField.WHITE_QUEEN);
-        board[0][4].setPiece(ChessField.WHITE_KING);
-        board[7][3].setPiece(ChessField.BLACK_QUEEN);
-        board[7][4].setPiece(ChessField.BLACK_KING);
-        
+        setPiece(0, 3, new ChessPiece(ChessPiece.WHITE_QUEEN));
+        setPiece(0, 4, new ChessPiece(ChessPiece.WHITE_KING));
+        setPiece(7, 3, new ChessPiece(ChessPiece.BLACK_QUEEN));
+        setPiece(7, 4, new ChessPiece(ChessPiece.BLACK_KING));
     } // Constructor()
+
+    /** Set a piece on one field
+     * @param row row whete to set the piece
+     * @param col column where to set the piece
+     * @param piece the piece to be set
+     * @return the previous piece on the field, maybe NO_PIECE
+     */
+    public ChessPiece setPiece(int row, int col, ChessPiece piece) {
+        ChessPiece result = board[row][col].getPiece();
+        board[row][col].setPiece(piece);
+        return result;
+    } // setPiece
+
+    /** Shows an HTML display of the current setting of the board 
+     */
+    public void show() {
+        System.out.println("<table border=\"1\">");
+        for (int row = 7; row >= 0; row --) {
+            System.out.print("<tr style=\"\">");
+            for (int col = 0; col <= 7; col ++) {
+                System.out.print("<td align=\"center\">"
+                        + "<span style=\"background-color:"
+                        +       (board[row][col].getColor() == ChessPiece.WHITE ? "lightyellow" : "silver")
+                        +       "\">" // close span's start tag
+                        + board[row][col].getPiece().getPieceType()
+                        + "</span>"
+                        + "</td>");
+            } // for col
+            System.out.println("</tr>");
+        } // for row
+        System.out.println("</table>");       
+    } // show
     
+    /**
+     * Test program.
+     * Prints a single field with some symbol
+     * @param args commandline arguments (ignored)
+     */
+    public static void main(String[] args) {
+        ChessBoard board = new ChessBoard();
+        board.show();
+        
+        System.out.println("</body></html>");
+    } // method main
+  
 } // ChessBoard

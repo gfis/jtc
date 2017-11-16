@@ -1,4 +1,4 @@
-/* Represenation of a chess field
+/* Represenation of a chess piece
  * Java Training Course example file
  * 2017-11-15, Georg Fischer
  *
@@ -23,7 +23,7 @@ package org.teherba.chess;
  *
  * @author Georg Fischer &lt;dr.georg.fischer at gmail.com>&gt;
  */
-public class ChessField {
+public class ChessPiece {
 
     public static final int BLACK = 1;
     public static final int WHITE = 0;
@@ -50,86 +50,58 @@ public class ChessField {
     /** col number 0:7 -> a to h*/
     public int col;
 
+    public static final String NO_PIECE = "&#x2800;";
+    public static final String WHITE_KING = "&#x2654;";
+    public static final String WHITE_QUEEN = "&#x2655;";
+    public static final String WHITE_ROOK = "&#x2656;";
+    public static final String WHITE_BISHOP = "&#x2657;";
+    public static final String WHITE_KNIGHT = "&#x2658;";
+    public static final String WHITE_PAWN = "&#x2659;"; 
+    public static final String BLACK_KING = "&#x265A;";
+    public static final String BLACK_QUEEN = "&#x265B;";
+    public static final String BLACK_ROOK = "&#x265C;";
+    public static final String BLACK_BISHOP = "&#x265D;";
+    public static final String BLACK_KNIGHT = "&#x265E;";
+    public static final String BLACK_PAWN = "&#x265F;";
+
     /**
      * Piece on the field, or NO_PIECE
      */
-    private ChessPiece piece;
+    private String pieceType;
     
     /** Set the piece on the field
-     * @param piece piece to be set
-     * @return the previous piece on the field
+     * @param pieceType type of the piece to be set
+     * @return the previous piece type on the field
      */
-    public ChessPiece setPiece(ChessPiece piece) {
-        ChessPiece result = this.piece;
-        this.piece = piece;
+    public String setPieceType(String pieceType) {
+        String result = this.pieceType;
+        this.pieceType = pieceType;
         return result;
-    } // setPiece
+    } // setPieceType
 
     /** Get the piece on the field
      * @return the current piece on the field
      */
-    public ChessPiece getPiece() {
-        return this.piece;
-    } // getPiece
+    public String getPieceType() {
+        return this.pieceType;
+    } // getPieceType
 
     /**
      * No-args constructor: no piece on it
      */
-    public ChessField() {
-        setPiece(ChessPiece.NO_PIECE);
-    } // constructor ChessField()
+    public ChessPiece() {
+        setPieceType(NO_PIECE);
+    } // constructor()
+
+    /**
+     * Constructor from int
+     */
+    public ChessPiece(String pieceType) {
+        setPieceType(pieceType);
+    } // constructor(String)
 
     private static String letters = "abcdefgh";
     private static String digits  = "12345678";
-
-    /**
-     * Constructor with position
-     *
-     * @param position position of the new field
-     */
-    public ChessField(String position) {
-        this();
-        this.position = position.toLowerCase();
-        char letter = this.position.charAt(0);
-        char digit  = this.position.charAt(1);
-        row    = digits.indexOf(digit);
-        col = letters.indexOf(letter);
-        setColor();
-    } // Constructor(position)
-    
-    /**
-     * Constructor with position
-     * @param row Java row number 0:7
-     * @param col Java column number 0:7
-    */
-    public ChessField(int row, int col) {
-        this();
-        this.row = row;
-        this.col = col;
-        position = letters.substring(col, col + 1) 
-                 + digits .substring(row, row + 1);
-        setColor();
-    } // Constructor(position)
-    
-    /**
-     * Constructor with position
-     * @param position position of the new field
-     * @param piece piece to be set on the field, or NO_PIECE
-     */
-    public ChessField(String position, String piece) {
-        this(position);
-        setPiece(piece);
-    } // Constructor(position, piece)
-
-    public void setColor() {
-        this.color = BLACK;
-        if (false) {
-        } else if (row % 2 == 0 && col % 2 == 1) { // even row and odd col
-            this.color = WHITE;
-        } else if (row % 2 == 1 && col % 2 == 0) { // odd row and even col
-            this.color = WHITE;
-        }
-    } // setColor
 
     /**
      * Test program.
@@ -137,7 +109,8 @@ public class ChessField {
       * @param args commandline arguments (ignored)
      */
     public static void main(String[] args) {
-        ChessField field = new ChessField("d1", ChessPiece.WHITE_QUEEN);
+    /*
+        ChessPiece field = new ChessPiece("d1", ChessPiece.WHITE_QUEEN);
         System.out.println("<html><body>"
                 + "<table border=\"1\"><tr><td>"
                 + "<span style=\"background-color:"
@@ -147,7 +120,8 @@ public class ChessField {
                 + "</span>"
                 + "</td></tr></table>"
                 + "</body></html>");
+    */
     } // method main
     
-} // ChessField()
+} // ChessPiece()
 
