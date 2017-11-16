@@ -19,73 +19,43 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
+import java.util.TreeMap;
 
 /**
- * Read lines with words and colorize them for several languages.
+ * Read lines with town names and number of inhabation, 
+ * and print a list sorted by town names.
  *
  * @author Georg Fischer &lt;dr.georg.fischer at gmail.com>&gt;
  */
-public class SearchTown {
+public class SortTowns {
     
-    /** List of town names together with number of inhabitants, separated by tab */
-    ArrayList<String> towns = new ArrayList<String>(128);
-
     /** Map of town names tp their number of inhabitants */
-    HashMap<String, String> townsMap = new HashMap<String, String>(128);
+    TreeMap<String, String> townsMap = new TreeMap<String, String>();
 
     /**
-     * Searches for a town in the list and returns the corresponding 
-     * number of inhabitants.
-     * @param townName name of the town to be searched for
-     * @return number of inhabitants
+     * Prints the sorted list of towns with their inhabitants.
      */
-    public String lookUp1(String townName) {
-        String result = "[not found]";
-        Iterator<String> iter = towns.iterator();
-        boolean busy = true;
-        while(busy && iter.hasNext()) {
-            String line = iter.next();
-            if (line.startsWith(townName)) { // town found
-                busy = false;
-                result =line.substring(line.indexOf("\t") + 1);
-            } // town found
-        } // while
-        return result;
-    } // lookUp1
-    /**
-     * Searches for a town in the list and returns the corresponding 
-     * number of inhabitants.
-     * @param townName name of the town to be searched for
-     * @return number of inhabitants
-     */
-    public String lookUp2(String townName) {
-        String result = townsMap.get(townName);
-        return result;
-    } // lookUp2
+    public void listTowns() {
+        Iterator<String> iter = townsMap.keySet().iterator();
+        while(iter.hasNext()) {
+            String townName = iter.next();
+            String noInhabitants = townsMap.get(townName);
+            System.out.println(String.format("%-30s %10s"
+                    , townName, noInhabitants));
+        } // while iter
+    } // listTowns
     
-    /**
-     * Process a line, and store it in an ArrayList.
-     *
-     * @param line input line to be processed, of the following form: 
-     * [town name] tab [number of inhabitants]
-     */
-    public void process1(String line) {
-        towns.add(line);
-    } // process1
-
     /**
      * Process a line, and store a (key, value) pair in the HashMap.
      *
      * @param line input line to be processed, of the following form: 
      * [town name] tab [number of inhabitants]
      */
-    public void process2(String line) {
+    public void process(String line) {
         String[] parts = line.split("\\t");
         townsMap.put(parts[0], parts[1]); // key = townName, value = inhabitants
-    } // process2
+    } // process
 
     /**
      * Test program.
@@ -94,7 +64,7 @@ public class SearchTown {
      * @param args commandline arguments: inputfile town_name
      */
     public static void main(String[] args) {
-        SearchTown searchTown = new SearchTown();
+        SortTowns sortTowns = new SortTowns();
         int iarg = 0;
         try {
             BufferedReader reader = new BufferedReader(new FileReader(args[iarg ++]));
@@ -105,18 +75,14 @@ public class SearchTown {
                     busy = false;
                 } else { // process line
                     // searchTown.process1(line);
-                    searchTown.process2(line);
+                    sortTowns.process(line);
                 } // process line
             } // while busy
             reader.close();
         } catch (IOException exc) {
             System.err.println(exc.getMessage());
         } // try
-        String whichTown = args[iarg ++];
-        // String result = searchTown.lookUp1(whichTown);
-        String result = searchTown.lookUp2(whichTown);
-        System.out.println("The indonesian town of " + whichTown 
-                + " today has more than " + result + " inhabitants.");
+        sortTowns.listTowns();
     } // method main
 
 } // SearchTown

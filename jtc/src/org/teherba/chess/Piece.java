@@ -70,6 +70,25 @@ public class Piece {
         this.color = color;
     } // setColor
 
+    /**
+     * Field where the piece is placed, or null: LOST
+     */
+    private int field;
+    
+    /** Gets the field 
+     * @return Field where the piece is placed, or null: LOST
+     */
+    public int getField() {
+        return this.field;
+    } // getField
+    
+    /** Sets the field where the piece is placed, or null: LOST
+     * @param field where the piece is placed, or null: LOST
+     */
+    public void setField(int field) {
+        this.field = field;
+    } // setField
+
     /** row number where the piece is currently placed, 0:7 or -1 for unknown */
     private int row;
     /** column number where the piece is currently placed, 0:7 or -1 for unknown */
@@ -102,10 +121,9 @@ public class Piece {
      * @return "e1" for the pawn before the white king, for example
      */
     public String getPosition() {
-        this.row = row;
-        this.col = col;
-        return "";
-    } // getPosition
+        // return field.getPosition();
+        return null;
+   } // getPosition
 
     /** Caution, the following constants must be synchronized with the Unicodes */
     public static final int KING   = 0;
