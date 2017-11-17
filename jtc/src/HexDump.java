@@ -20,11 +20,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
- * Read lines and print them in hexadecimal and ASCII 
+ * Read lines and print them in hexadecimal and ASCII
  *
  * @author Georg Fischer &lt;dr.georg.fischer at gmail.com&gt;
  */
 public class HexDump {
+
+    private static final int MAX_BUF = 16;
 
     /**
      * Test program: Filters standard input and writes it to standard output.
@@ -37,22 +39,28 @@ public class HexDump {
         } // set default arguments
         try {
             FileInputStream stream = new FileInputStream(args[0]);
-            byte[] buffer = new byte[16];
+            byte[] buffer = new byte[MAX_BUF];
             boolean busy = true;
             long offset = 0;
             while (busy) {
                 int lengthRead = stream.read(buffer);
-                int index = 0;
-                System.out.print(String.format("%08x: ", offset));
-                while (index < lengthRead) { // dump 16 bytes in one line
-                    System.out.print(String.format("%02x ", buffer[index]));
-                    index ++;
-                } // while 1 line
-                String readable = new String(buffer, "ISO-8859-1");
-                readable = readable.replaceAll("[\\r\\n\\t]", ".");
-                System.out.println(readable);
-                offset += lengthRead; // buffer.length
                 busy = lengthRead > 0;
+                if (busy) {
+                    System.out.print(String.format("%08x: ", offset));
+                    int index = 0;
+                    while (index < MAX_BUF) { // dump 16 bytes in one line
+                        if (index < lengthRead) {
+                            System.out.print(String.format("%02x ", buffer[index]));
+                        } else {
+                            System.out.print("   ");
+                        }
+                        index++;
+                    } // while 1 line
+                    String readable = new String(buffer, "ISO-8859-1");
+                    readable = readable.substring(0, lengthRead).replaceAll("[\\r\\n\\t]", ".");
+                    System.out.println(readable);
+                } // still busy
+                offset += MAX_BUF; // buffer.length
             } // while busy
             stream.close();
         } catch (IOException exc) {

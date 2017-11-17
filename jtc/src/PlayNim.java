@@ -1,6 +1,6 @@
 /* Plays a simple Nim misère game
  * Java Training Course example file
- * 2017-11-14, Georg Fischer
+ * 2017-11-17, Georg Fischer
  *
  * Copyright 2017 Georg Fischer <dr.georg.fischer at gmail.com>.
  *
@@ -27,6 +27,29 @@ import java.util.Scanner;
  * @author Georg Fischer &lt;dr.georg.fischer at gmail.com&gt;
  */
 public class PlayNim {
+    
+    /** minimum number of sticks to be taken by each player */
+    private static final int MIN_TAKE = 1;
+    /** maximum number of sticks to be taken by each player */
+    private static final int MAX_TAKE = 3;
+    
+    /** Get a random number between (including) MIN_TAKE and MAX_TAKE
+     *  @return random number
+     */
+    public static int randomNumber() {
+        return (new Double(Math.random() * MAX_TAKE + MIN_TAKE)).intValue(); 
+                // random() yields >= 0.0 and < 1.0 -> 1..3
+    } // randomNumber
+
+    /** Get the nearest magic number <= to the parameter.
+     * The magic number for MAX_TAKE = 3 are 1, 5, 9, 13, 17 and so on.
+     * The general formula is magic = 1 + MAX_TAKE * n.
+     * @param noSticks current number of sticks; the result must be <= this value
+     *  @return the nearest random number
+     */
+    public static int getNearestMagic(int noSticks) {
+        return ((noSticks - 1) / (MAX_TAKE + 1)) * (MAX_TAKE + 1) + 1;
+     } // getNearestMagic
 
     /**
      * Test program
@@ -37,14 +60,12 @@ public class PlayNim {
         //  prompt for the user's name
         int machineTaken = 0;
         int noSticks = 19;
-        int minTake = 1;
-        int maxTake = 3;
         while (noSticks >= 0) {
             System.out.println("There are " + noSticks + " left.");
             System.out.print("How many sticks do you take? ");
             int humanTaken = scanner.nextInt();
-            if (humanTaken < minTake || humanTaken > maxTake) {
-                System.out.println("** You must take between " + minTake + " and " + maxTake + " sticks!");
+            if (humanTaken < MIN_TAKE || humanTaken > MAX_TAKE) {
+                System.out.println("** You must take between " + MIN_TAKE + " and " + MAX_TAKE + " sticks!");
             } else { // proper humanTaken
                 noSticks -= humanTaken;
                 System.out.println(noSticks + " are left.");
@@ -52,11 +73,11 @@ public class PlayNim {
                     System.out.println("Good for you! You have won!");
                     noSticks = -1;
                 } else { // machine not yet lost
-                    if ((noSticks - 1) % 4 == 0) { // human was clever: machine tries randomly
-                        machineTaken = (new Double(Math.random() * 3.0 + 1.0)).intValue(); // >= 0.0 and < 1.0 -> 1..3
+                    int magic = getNearestMagic(noSticks);
+                    if (noSticks - magic == 0) { // human was clever: machine tries randomly
+                        machineTaken = randomNumber();
                     } else { // human did not reach a magic number: machine takes it and wins
-                        int nextLowerMagic = ((noSticks - 1) / 4) * 4 + 1;
-                        machineTaken = noSticks - nextLowerMagic;
+                        machineTaken = noSticks - magic;
                         System.out.print("I will win! ");
                     } // machine wins
                     System.out.println("I take " + machineTaken + ".");
