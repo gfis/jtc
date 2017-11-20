@@ -32,7 +32,7 @@ public class SortTowns {
     
     /** Map of town names tp their number of inhabitants */
     TreeMap<String, String> townsMap = new TreeMap<String, String>();
-
+ 
     /**
      * Prints the sorted list of towns with their inhabitants.
      */

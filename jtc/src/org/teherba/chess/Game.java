@@ -1,4 +1,4 @@
-/* Representation of a chess board of 64 ChessFields
+/* Representation of a chess board of 64 Fields
  * Java Training Course example file
  * 2017-11-16, Georg Fischer
  *
@@ -14,7 +14,7 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
 package org.teherba.chess;
 
@@ -72,13 +72,16 @@ public class Game {
 
     /**
      * Returns an HTML display of the current setting of the board
+     * @return an HTML table
      */
     public String toHTML() {
         StringBuffer result = new StringBuffer(256);
         result.append("<table>\n");
         int row = 8 - 1;
         while (row >= 0) { // preset all Fields
-            result.append("<tr id=\"" + String.valueOf(row) + "\">");
+            result.append("<tr id=\"");
+            result.append(String.valueOf(row));
+            result.append("\">");
             int col = 0;
             while (col < 8) {
                 result.append(getField(row, col).toHTML());

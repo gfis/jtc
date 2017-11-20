@@ -1,4 +1,4 @@
-/* Representation of a chess board of 64 ChessFields
+/* Representation of a chess player and his pieces
  * Java Training Course example file
  * 2017-11-16, Georg Fischer
  *
@@ -14,9 +14,11 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
 package org.teherba.chess;
+import org.teherba.chess.Game;
+import org.teherba.chess.Piece;
 /**
  * Representation of a chess player with its pieces
  * @author Georg Fischer &lt;dr.georg.fischer at gmail.com>&gt;
@@ -24,7 +26,7 @@ package org.teherba.chess;
 public class Player {
     /** The set of 16 pieces for one Player. */
     private Piece[] pieces;
-    
+
     /** The overall {@link Game} object. */
     private Game game;
 
@@ -32,7 +34,7 @@ public class Player {
      */
     public Player() {
     } // Constructor()
-    
+
     /** Constructor with color, assigns 8+8 {@link Piece}s to this Player
      *  @param game overall {@link Game} object
      *  @oaram color color of the Player's pieces
@@ -95,7 +97,7 @@ public class Player {
         result.append("</table>");
         return result.toString();
     } // toHTML
-    
+
     /**
      * Test program.
      * Prints a single field with some symbol
@@ -115,5 +117,5 @@ public class Player {
         System.out.println(player.toHTML());
         System.out.println("</body></html>");
     } // method main
-  
+
 } // Player
