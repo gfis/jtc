@@ -55,48 +55,8 @@ public class PlayNimState {
      } // getNearestMagic
 
     /**
-     * Old main program
-     */
-    public static void oldMain(String[] args) {
-        // create a scanner so we can read the command-line input
-        Scanner scanner = new Scanner(System.in);
-        //  prompt for the user's name
-        int machineTaken = 0;
-        int noSticks = 19;
-        while (noSticks >= 0) {
-            System.out.println("There are " + noSticks + " left.");
-            System.out.print("How many sticks do you take? ");
-            int humanTaken = scanner.nextInt();
-            if (humanTaken < MIN_TAKE || humanTaken > MAX_TAKE) {
-                System.out.println("** You must take between " + MIN_TAKE + " and " + MAX_TAKE + " sticks!");
-            } else { // proper humanTaken
-                noSticks -= humanTaken;
-                System.out.println(noSticks + " are left.");
-                if (noSticks == 1) { // machine looses
-                    System.out.println("Good for you! You have won!");
-                    noSticks = -1;
-                } else { // machine not yet lost
-                    int magic = getNearestMagic(noSticks);
-                    if (noSticks - magic == 0) { // human was clever: machine tries randomly
-                        machineTaken = randomNumber();
-                    } else { // human did not reach a magic number: machine takes it and wins
-                        machineTaken = noSticks - magic;
-                        System.out.print("I will win! ");
-                    } // machine wins
-                    System.out.println("I take " + machineTaken + ".");
-                    noSticks -= machineTaken;
-                    // now decide wether we reached the end
-                    if (noSticks == 1) {
-                        System.out.println("Bad for you. I have won.");
-                        noSticks = -1;
-                    }
-                } // machine not yet lost
-            } // proper humanTaken
-        } // while noSticks >= 0
-    } // oldMain
-
-    /**
-     * Test program
+     * Main program which plays the game by using 
+     * a finite automaton. The human user starts taking sticks.
      */
     public static void main(String[] args) {
         // create a scanner so we can read the command-line input
