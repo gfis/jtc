@@ -1,4 +1,4 @@
-/* Read lines with and extract names
+/* Read lines from an URL and extract names
  * Java Training Course example file
  * 2017-11-20, Georg Fischer
  *
@@ -21,30 +21,33 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.Iterator;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Read lines with and extract names
+ * Read lines from an URL and extract names
  *
  * @author Georg Fischer &lt;dr.georg.fischer at gmail.com>&gt;
  */
 public class SearchAlice {
 
-    /** Map of town names tp their number of inhabitants */
-    private static TreeMap<String, String> nameMap = new TreeMap<String, String>();
- 
     /**
-     * Process a line, and output any names which are found.
-     * A name is assumed if a lowercase letter is followed by
-     * some spaces, an uppercase letter and several lowercase letters.
+     * Map of town names tp their number of inhabitants
+     */
+    private static TreeMap<String, Integer> nameMap = new TreeMap<String, Integer>();
+
+    /**
+     * Process a line, and output any names which are found. A name is assumed
+     * if a lowercase letter is followed by some spaces, an uppercase letter and
+     * several lowercase letters.
      *
      * @param line input line to be processed
      */
     public static void process(String line) {
         String regex = "[a-z]\\s+[A-Z][a-z]+";
-                // lowercase spaces 1Uppercase nLowercase
+        // lowercase spaces 1Uppercase nLowercase
         Pattern pat = Pattern.compile(regex);
         Matcher mat = pat.matcher(line);
         mat.reset();
@@ -53,9 +56,14 @@ public class SearchAlice {
             int end = mat.end();
             String name = line.substring(start, end)
                     .replaceAll("\\A[a-z]\\s+", "");
-            if (nameMap.put(name, "1") == null) { // key was not found; value is irrelevant
-                System.out.println(name);
-            } // was not found
+            Integer occurs = nameMap.get(name);
+            if (occurs == null) { // key = name was not found
+                occurs = new Integer(1);
+                System.out.print(name + " ");
+            } else {
+                occurs = new Integer(occurs.intValue() + 1);
+            }
+            nameMap.put(name, occurs);
         } // while
     } // process
 
@@ -93,6 +101,16 @@ public class SearchAlice {
                     process(line);
                 } // process line
             } // while busy
+
+            // now we print the sorted list of names
+            Iterator<String> iter = nameMap.keySet().iterator();
+            while (iter.hasNext()) {
+                String name = iter.next();
+                int occurs = nameMap.get(name).intValue();
+                System.out.println(String.format("%-16s %10d",
+                         name, occurs));
+            } // while iter
+
         } catch (IOException exc) {
             System.err.println(exc.getMessage());
         } // try
