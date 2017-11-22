@@ -19,11 +19,10 @@ package org.teherba.jtc.math;
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License. */
-
-/** 
+/**
  * Class <em>Rational</em> represents an integer fraction together with the
- * arithmetic operations on such Rationals. The denominator is always &gt; 0. All
- * arithmetic operations return reduced fractions where GCD(numerator,
+ * arithmetic operations on such Rationals. The denominator is always &gt; 0.
+ * All arithmetic operations return reduced fractions where GCD(numerator,
  * denominator) = 1. The methods have name, parameters and return values
  * analogous to methods of the Java object type BigInteger, see
  * https://docs.oracle.com/javase/7/docs/api/java/math/BigInteger.html
@@ -48,7 +47,7 @@ public class Rational {
     All Rational return values should be reduced.
     Insert proper documentation comments.
     Always arrange all methods of the class in alphabetical order, since there are many.
-    */
+     */
     // public static Rational abs(Ratio rat1) { return new Ratio(); }
     // public static Rational add(Ratio rat1, Ratio rat2) { return new Ratio(); }
     // public static int compareTo(Ratio rat1, Ratio rat2) { return 0; } // return -1, 0, +1 iff this < = > rat2
@@ -100,13 +99,19 @@ public class Rational {
      * @param str String of the form "a/b"
      */
     public Rational(String str) {
+        str = str.replaceAll("\\s", "");
         int slashPos = str.indexOf("/");
         if (slashPos < 0) {
             str += "/1";
             slashPos = str.length() - 2;
         }
-        this.numerator = Integer.parseInt(str.substring(0, slashPos));
-        this.denominator = Integer.parseInt(str.substring(slashPos + 1));
+        try {
+            this.numerator = Integer.parseInt(str.substring(0, slashPos));
+            this.denominator = Integer.parseInt(str.substring(slashPos + 1));
+        } catch (Exception exc) {
+            this.numerator = 0;
+            this.denominator = 1;
+        }
     } // constructor(String)
 
     //----------------
@@ -179,7 +184,7 @@ public class Rational {
         }
         return result;
     } // compareTo(Rational)
-    
+
     /**
      * Determines whether <em>this</em> Rational is equal to a second.
      *
@@ -193,7 +198,7 @@ public class Rational {
         }
         return result;
     } // equals(Rational)
-    
+
     /**
      * Returns the quotient of <em>this</em> Rational and a second.
      *
@@ -287,7 +292,7 @@ public class Rational {
      * @return (- this)
      */
     public Rational negate() {
-        return (new Rational(- this.numerator, this.denominator)).reduce();
+        return (new Rational(-this.numerator, this.denominator)).reduce();
     } // negate(Rational)
 
     /**
@@ -339,6 +344,22 @@ public class Rational {
         }
         return result;
     } // toString()
+
+    /**
+     * Returns <em>this</em> Rational as a String. The Rational 
+     * may be in parentheses if the operator is "*" or "/"
+     * @param oper one of "+", "-", "*", "/"
+     * @return a String of the form "a/b", or "(a/b)",
+     * or only "a" if b is 1.
+     */
+    public String toString(String oper) {
+        String result = this.toString();
+        if (result.indexOf("/") >= 0 &&
+                (oper.equals("*") || oper.equals("/"))) {
+            result = "(" + result + ")";
+        }
+        return result;
+    } // toString(String)
 
     /**
      * Test program, shows a series of fixed operations on Rationals
