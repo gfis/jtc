@@ -93,7 +93,7 @@ public class PlayNimSwing extends JFrame {
      *
      * @return random number
      */
-    public static int randomNumber() {
+    public int randomNumber() {
         return (new Double(Math.random() * MAX_TAKE + MIN_TAKE)).intValue();
         // random() yields >= 0.0 and < 1.0 -> 1..3
     } // randomNumber
@@ -101,18 +101,36 @@ public class PlayNimSwing extends JFrame {
     /**
      * Get the nearest magic number <= to the parameter. The magic number for
      * MAX_TAKE = 3 are 1, 5, 9, 13, 17 and so on. The general formula is magic
-     * = 1 + MAX_TAKE * n. 
-     * @param noSticks current number of sticks; the result
-     * must be <= this value 
-     * @return the nearest random number
+     * = 1 + MAX_TAKE * n. @param noSticks current number of sticks; the result
+     * must be <= this value @return the nearest random number
      */
-    public static int getNearestMagic(int noSticks) {
+    public int getNearestMagic(int noSticks) {
         return ((noSticks - 1) / (MAX_TAKE + 1)) * (MAX_TAKE + 1) + 1;
     } // getNearestMagic
+
+    /**
+     * Shows the sticks in the field
+     */
+    public void showSticks(int noSticks) {
+        StringBuffer value = new StringBuffer(128);
+        int ist = 1;
+        while (ist <= noSticks) {
+            value.append("|");
+            if (ist % 5 == 0) {
+                value.append(" ");
+            }
+            ist ++;
+        } // while ist
+        value.append(" (");
+        value.append(String.valueOf(noSticks));
+        value.append(")");
+        noSticksText.setText(value.toString());
+    } // showSticks
 
     private int humanTaken = 0;
     private int machineTaken = 0;
     private int noSticks = START_NO_STICKS;
+
     /**
      * No-args constructor: creates new form for Nim game
      */
@@ -120,7 +138,7 @@ public class PlayNimSwing extends JFrame {
         noSticks = START_NO_STICKS;
         initComponents();
         getRootPane().setDefaultButton(takeButton);
-        noSticksText.setText(String.valueOf(noSticks));
+        showSticks(noSticks);
         pack();
         humanTakenText.requestFocusInWindow();
         // Center in the screen
@@ -169,7 +187,9 @@ public class PlayNimSwing extends JFrame {
             }
         });
 
+        mainPanel.setBackground(new java.awt.Color(255, 255, 204));
         mainPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(12, 12, 12, 12));
+        mainPanel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         mainPanel.setMinimumSize(new java.awt.Dimension(297, 200));
         mainPanel.setLayout(new java.awt.GridBagLayout());
 
@@ -182,6 +202,7 @@ public class PlayNimSwing extends JFrame {
         mainPanel.add(remainingLabel, gridBagConstraints);
 
         noSticksText.setEditable(false);
+        noSticksText.setBackground(new java.awt.Color(255, 255, 204));
         noSticksText.setColumns(20);
         noSticksText.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -221,6 +242,7 @@ public class PlayNimSwing extends JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
         mainPanel.add(machineTakenLabel, gridBagConstraints);
 
+        buttonsPanel.setBackground(new java.awt.Color(255, 255, 204));
         buttonsPanel.setLayout(new java.awt.GridBagLayout());
 
         takeButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -302,7 +324,7 @@ public class PlayNimSwing extends JFrame {
 
     private void newGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameActionPerformed
         machineTakenLabel.setText("");
-        noSticksText.setText(String.valueOf(noSticks));
+        showSticks(noSticks);
         humanTakenText.setText("");
         getRootPane().setDefaultButton(takeButton);
         humanTakenText.requestFocusInWindow();
@@ -318,24 +340,13 @@ public class PlayNimSwing extends JFrame {
             machineTakenLabel.setText("You must enter a number between "
                     + String.valueOf(MIN_TAKE) + " and "
                     + String.valueOf(MAX_TAKE) + ".");
-            humanTakenText.setText("");
-            getRootPane().setDefaultButton(takeButton);
-            humanTakenText.requestFocusInWindow();
         } else { // human entered correct number
             if (noSticks - humanTaken < 1) {
                 machineTakenLabel.setText("Bad! You could have reached 1, but you lost.");
                 noSticks = START_NO_STICKS;
-                noSticksText.setText(String.valueOf(noSticks));
-                humanTakenText.setText("");
-                getRootPane().setDefaultButton(takeButton);
-                humanTakenText.requestFocusInWindow();
             } else if (noSticks - humanTaken == 1) { // human wins
                 machineTakenLabel.setText("Good! You won!");
                 noSticks = START_NO_STICKS;
-                noSticksText.setText(String.valueOf(noSticks));
-                humanTakenText.setText("");
-                getRootPane().setDefaultButton(takeButton);
-                humanTakenText.requestFocusInWindow();
             } else { // game goes on: machine takes
                 noSticks -= humanTaken;
                 int diffMagic = noSticks - getNearestMagic(noSticks);
@@ -346,15 +357,20 @@ public class PlayNimSwing extends JFrame {
                 }
                 noSticks -= machineTaken;
                 if (noSticks == 1) {
-                    machineTakenLabel.setText("Bad for you! I have won!");
+                    machineTakenLabel.setText("Bad for you!"
+                            + "I took " + String.valueOf(machineTaken)
+                            + " and won!");
                     noSticks = START_NO_STICKS;
                 } else { // game goes on
+                    machineTakenLabel.setText(""
+                            + "I took " + String.valueOf(machineTaken)
+                            + ".");
                 } // game goes on
-                noSticksText.setText(String.valueOf(noSticks));
-                humanTakenText.setText("");
-                getRootPane().setDefaultButton(takeButton);
-                humanTakenText.requestFocusInWindow();
             } // game goes on
+            showSticks(noSticks);
+            humanTakenText.setText("");
+            getRootPane().setDefaultButton(takeButton);
+            humanTakenText.requestFocusInWindow();
         } // correct number
     }//GEN-LAST:event_humanTakenActionPerformed
 
