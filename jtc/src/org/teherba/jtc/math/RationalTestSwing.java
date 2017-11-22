@@ -27,7 +27,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
  */
 
- /* Anagram Game Application */
+ /* Rational Test Application */
 package org.teherba.jtc.math;
 import java.awt.Dimension;
 import java.awt.Point;
