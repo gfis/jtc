@@ -344,8 +344,8 @@ public class PlayNimGUI extends JFrame {
                 if (noSticks == 1) { // at the end
                     machineTakenField.setText("Bad - I took "
                             + String.valueOf(machineTaken)
-                            + (machineTaken <= 1 ? " stick." : " sticks."
-                                    + " and I won."));
+                            + (machineTaken <= 1 ? " stick" : " sticks"
+                            + " and I won."));
                     noSticks = START_NO_STICKS;
                     noSticksField.setText(String.valueOf(noSticks));
                     getRootPane().setDefaultButton(takeButton);
