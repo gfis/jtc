@@ -38,12 +38,12 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 /**
- * About dialog of the Anagram Game application.
+ * AboutNim dialog of the Anagram Game application.
  */
-public class About extends JDialog {
+public class AboutNim extends JDialog {
 
     /** Creates new form About */
-    public About(JFrame parent) {
+    public AboutNim(JFrame parent) {
         super(parent,true);
         initComponents();
         pack();
@@ -69,18 +69,19 @@ public class About extends JDialog {
         closeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("About Anagrams");
+        setTitle("About Nim Game");
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         mainPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(11, 11, 12, 12));
         mainPanel.setLayout(new java.awt.GridBagLayout());
+        getContentPane().add(mainPanel, new java.awt.GridBagConstraints());
 
         copyrightTextArea.setEditable(false);
         copyrightTextArea.setBackground(javax.swing.UIManager.getDefaults().getColor("Panel.background"));
         copyrightTextArea.setColumns(25);
         copyrightTextArea.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         copyrightTextArea.setLineWrap(true);
-        copyrightTextArea.setRows(8);
+        copyrightTextArea.setRows(2);
         copyrightTextArea.setText("Nim Game\n\nCopyright (c) 2017 teherba.org");
         copyrightTextArea.setWrapStyleWord(true);
         copyrightTextArea.setBorder(null);
@@ -91,27 +92,22 @@ public class About extends JDialog {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(24, 0, 24, 0);
-        mainPanel.add(copyrightTextArea, gridBagConstraints);
+        getContentPane().add(copyrightTextArea, gridBagConstraints);
 
         closeButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         closeButton.setMnemonic('C');
         closeButton.setText("Close");
+        closeButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        closeButton.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        closeButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         closeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHEAST;
-        mainPanel.add(closeButton, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        getContentPane().add(mainPanel, gridBagConstraints);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        getContentPane().add(closeButton, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed

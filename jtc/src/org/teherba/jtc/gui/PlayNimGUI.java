@@ -291,7 +291,7 @@ public class PlayNimGUI extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
-        new About(this).setVisible(true);
+        new AboutNim(this).setVisible(true);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
     private void newGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameButtonActionPerformed
