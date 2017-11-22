@@ -27,7 +27,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
  */
 
-/* Anagram Game Application */
+/* Nim Game Application */
 
 package org.teherba.jtc.gui;
 
