@@ -29,7 +29,7 @@
 
 /* Nim Game Application */
 
-package org.teherba.jtc.math;
+package org.teherba.jtc.misc;
 
 import java.awt.Dimension;
 import java.awt.Point;
@@ -40,10 +40,10 @@ import javax.swing.JFrame;
 /**
  * AboutPlayNim dialog of the Anagram Game application.
  */
-public class AboutRationalTest extends JDialog {
+public class AboutTestRegex extends JDialog {
 
     /** Creates new form About */
-    public AboutRationalTest(JFrame parent) {
+    public AboutTestRegex(JFrame parent) {
         super(parent,true);
         initComponents();
         pack();
@@ -69,7 +69,7 @@ public class AboutRationalTest extends JDialog {
         closeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("About  Rational Test");
+        setTitle("About TestRegex");
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         mainPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(11, 11, 12, 12));
@@ -81,7 +81,7 @@ public class AboutRationalTest extends JDialog {
         copyrightTextArea.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         copyrightTextArea.setLineWrap(true);
         copyrightTextArea.setRows(8);
-        copyrightTextArea.setText("Rational Test\n\nCopyright (c) 2017 www.teherba.org");
+        copyrightTextArea.setText("Test Regular Expressions\n\nCopyright (c) 2017 www.teherba.org");
         copyrightTextArea.setWrapStyleWord(true);
         copyrightTextArea.setBorder(null);
         copyrightTextArea.setFocusable(false);
