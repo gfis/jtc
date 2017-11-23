@@ -56,8 +56,8 @@ public class WalkFileTree
 
     // Print each directory visited.
     @Override
-    public FileVisitResult postVisitDirectory(Path dir,
-            IOException exc) {
+    public FileVisitResult preVisitDirectory(Path dir,
+            BasicFileAttributes attr) {
         System.out.format("D %s%n", dir);
         return FileVisitResult.CONTINUE;
     }
