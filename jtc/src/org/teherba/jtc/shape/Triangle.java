@@ -19,16 +19,17 @@
 package org.teherba.jtc.shape;
 
 /**
- * Class for the Shape of a circle.
+ * Define a triangle Shape with 3 equal sides
  * @author Georg Fischer &lt;dr.georg.fischer at gmail.com>&gt;
  */
-public class Circle extends Shape {
+public class Triangle extends Shape {
     
     /** No-args Constructor
+     * 
      */
-    public Circle() {
+    public Triangle() {
         super();
-    } // Circle()
+    } // Triangle
     
     /** Constructor with all properties
      * @param color    filling color code (HTML RGB value, for example 0x44ff66
@@ -36,27 +37,28 @@ public class Circle extends Shape {
      * @param centerY  y coordinate of the center
      * @param size     size of the object
      */
-    public Circle(int color, int centerX, int centerY, int size) {
-        super(color, centerX, centerY, size);
-,    } // Circle
+    public Triangle(int color, int centerX, int centerY, int size) {
+       super(color, centerX, centerY, size);
+    } // Shape
 
-    /** Output SVG code for the Circle
+    /** Output SVG code for the Triangle
      * @return SVG code for drawing the Shape
      */
     @Override   
     public String toSVG() {
-        // <circle cx="40" cy="40" r="24" style="stroke:#006600; fill:#00cc00"/>
-        return "<circle cx=\""
-                + centerX 
-                + "\" cy=\""
-                + centerY
-                + "\" r=\"" 
+        // <path d="M150 0 L75 200 L225 200 Z" />
+        return "<path d=\""
+                + String.valueOf(centerX - size/2)
+                + "\" y=\""
+                + String.valueOf(centerY - size/2)
+                + "\" height=\"" 
+                + size
+                + "\" width=\"" 
                 + size
                 + "\""
                 + getStyle()
                 + "/>"
                 ;
-    } // toSVG
-    
+    } // toSVG 
 
-} // Circle
+} // Triangle

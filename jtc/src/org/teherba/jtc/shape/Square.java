@@ -32,17 +32,14 @@ public class Square extends Shape {
     } // Shape
     
     /** Constructor with all properties
-     * @param color
-     * @param centerX
-     * @param centerY
-     * @param size
+     * @param color    filling color code (HTML RGB value, for example 0x44ff66
+     * @param centerX  x coordinate of the center
+     * @param centerY  y coordinate of the center
+     * @param size     size of the object
      */
     public Square(int color, int centerX, int centerY, int size) {
-        this.color = color;
-        this.centerX = centerX;
-        this.centerY = centerY;
-        this.size = size;
-    } // Shape
+        super(color, centerX, centerY, size);
+,    } // Square
 
     /** Output SVG code for the Circle
      * @return SVG code for drawing the Shape

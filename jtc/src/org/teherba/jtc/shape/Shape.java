@@ -57,10 +57,10 @@ public class Shape {
     } // Shape
     
     /** Constructor with all properties
-     * @param color
-     * @param centerX
-     * @param centerY
-     * @param size
+     * @param color    filling color code (HTML RGB value, for example 0x44ff66
+     * @param centerX  x coordinate of the center
+     * @param centerY  y coordinate of the center
+     * @param size     size of the object
      */
     public Shape(int color, int centerX, int enterY, int size) {
         this.color = color;
