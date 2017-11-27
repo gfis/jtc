@@ -23,6 +23,11 @@ package org.teherba.jtc.shape;
  * @author Georg Fischer &lt;dr.georg.fischer at gmail.com>&gt;
  */
 public class Shape {
+    /** maximum value of the color attribute*/
+    public static final int MAX_COLOR = 256*256*256;
+    /** value of the viewport size */
+    public static final int MAX_COORD = 100;
+    
     /** Fill the Shape with this color
      */
     public int color;
@@ -45,10 +50,10 @@ public class Shape {
      * 
      */
     public Shape() {
-        color = 0;
-        centerX = 0;
-        centerY = 0;
-        size = 0;
+        color   = random(0, MAX_COLOR);
+        centerX = random(0, MAX_COORD);
+        centerY = random(0, MAX_COORD);
+        size    = random(10, MAX_COORD/2);
     } // Shape
     
     /** Constructor with all properties
@@ -82,7 +87,7 @@ public class Shape {
 " <!ATTLIST svg xmlns:xlink CDATA #FIXED \"http://www.w3.org/1999/xlink\">\n" +
 "]>\n" +
 "<svg width=\"200mm\" height=\"200mm\"\n" +
-"    viewBox=\"0 0 100 100\" \n" +
+"    viewBox=\"0 0 " + MAX_COORD + " " + MAX_COORD + "\" \n" +
 "    xmlns=\"http://www.w3.org/2000/svg\"\n" + 
 "    xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n" +
 "    >\n" +
@@ -97,6 +102,26 @@ public class Shape {
         return "</svg>\n";
     } // endDrawing
     
+    /** Gets the common <em>style</em> attribute of all Shapes
+     * @return style="..."
+     */
+    public String getStyle() {
+        return " style=\"stroke:black; stroke-width:0.1; fill:"
+                + String.format("#%06x", color)
+                + "\" "
+                ;
+    } // getStyle
+    
+    /** Gets a random integer in some range
+     * @param low lower bound
+     * @param high upper bound
+     * @return some random number between low and high (including)
+     */
+    public int random(int low, int high) {
+        return (new Double(Math.random() * (high + 1) + low)).intValue(); 
+                // Math.random() yields >= 0.0 and < 1.0 
+    } // random(int, int)
+
     /**
      * Test program
      * @param args commandline arguments
@@ -105,9 +130,11 @@ public class Shape {
         if (args.length == 0) { // set default arguments
             args = new String[] { "", "", "", "" };
         } // set default arguments
-        Shape shape = new Circle(0x223344, 50, 50, 20);
+        Shape shape = new Circle(0x29C939, 50, 50, 20);
         System.out.println(shape.startDrawing());
         System.out.println(shape.toSVG());
+        System.out.println(
+                (new Square(0xEA4337, 30, 30, 15)).toSVG());
         System.out.println(shape.endDrawing());
     } // main
     

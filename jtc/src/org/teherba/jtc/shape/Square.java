@@ -22,12 +22,12 @@ package org.teherba.jtc.shape;
  * General class for geomatrical shapes.
  * @author Georg Fischer &lt;dr.georg.fischer at gmail.com>&gt;
  */
-public class Circle extends Shape {
+public class Square extends Shape {
     
     /** No-args Constructor
      * 
      */
-    public Circle() {
+    public Square() {
         super();
     } // Shape
     
@@ -37,7 +37,7 @@ public class Circle extends Shape {
      * @param centerY
      * @param size
      */
-    public Circle(int color, int centerX, int centerY, int size) {
+    public Square(int color, int centerX, int centerY, int size) {
         this.color = color;
         this.centerX = centerX;
         this.centerY = centerY;
@@ -50,17 +50,18 @@ public class Circle extends Shape {
     @Override   
     public String toSVG() {
         // <circle cx="40" cy="40" r="24" style="stroke:#006600; fill:#00cc00"/>
-        return "<circle cx=\""
-                + centerX 
-                + "\" cy=\""
-                + centerY
-                + "\" r=\"" 
+        return "<rect x=\""
+                + String.valueOf(centerX - size/2)
+                + "\" y=\""
+                + String.valueOf(centerY - size/2)
+                + "\" height=\"" 
+                + size
+                + "\" width=\"" 
                 + size
                 + "\""
                 + getStyle()
                 + "/>"
                 ;
-    } // toSVG
-    
+    } // toSVG 
 
-} // Circle
+} // Square
