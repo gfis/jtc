@@ -15,52 +15,67 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License. */
-
 package org.teherba.jtc.shape;
 
 /**
  * General class for geomatrical shapes.
+ *
  * @author Georg Fischer &lt;dr.georg.fischer at gmail.com>&gt;
  */
 public class Shape {
-    /** maximum value of the color attribute*/
-    public static final int MAX_COLOR = 256*256*256;
-    /** value of the viewport size */
-    public static final int MAX_COORD = 100;
-    
-    /** Fill the Shape with this color
+
+    /**
+     * maximum value of the color attribute
+     */
+    public static final int MAX_COLOR = 256 * 256 * 256;
+    /**
+     * value of the viewport size
+     */
+    public static final int MAX_X = 400;
+    /**
+     * value of the viewport size
+     */
+    public static final int MAX_Y = 200;
+
+    /**
+     * Fill the Shape with this color
      */
     public int color;
-    
-    /** horizontal coordinate of the center point
-      * left -> right
+
+    /**
+     * horizontal coordinate of the center point left -> right
      */
     public int centerX;
-    
-    /** vertical coordinate of the center point.
-     * top -> bottom
+
+    /**
+     * vertical coordinate of the center point. top -> bottom
      */
     public int centerY;
-    
-    /** extension, size pf the Shape
+
+    /**
+     * extension, size pf the Shape
      */
     public int size;
-    
-    /** No-args Constructor
-     * 
+
+    /**
+     * No-args Constructor
+     *
      */
     public Shape() {
-        color   = random(0, MAX_COLOR);
-        centerX = random(0, MAX_COORD);
-        centerY = random(0, MAX_COORD);
-        size    = random(10, MAX_COORD/2);
+        int margin = 30;
+        color = random(0, MAX_COLOR);
+        centerX = random(0 + margin, MAX_X - margin);
+        centerY = random(0 + margin, MAX_Y - margin);
+        size = random(10, MAX_Y / 8);
     } // Shape
-    
-    /** Constructor with all properties
-     * @param color    filling color code (HTML RGB value, for example 0x44ff66
-     * @param centerX  x coordinate of the center
-     * @param centerY  y coordinate of the center
-     * @param size     size of the object
+
+    /**
+     * Constructor with all properties
+     *
+     * @param color filling color code (HTML RGB value, for example 0x44ff66
+     * @param centerX x coordinate of the center
+     * @param centerY y coordinate of the center
+     * @param size size of the object
      */
     public Shape(int color, int centerX, int enterY, int size) {
         this.color = color;
@@ -69,76 +84,92 @@ public class Shape {
         this.size = size;
     } // Shape
 
-    /** Output SVG code for the Shape
+    /**
+     * Output SVG code for the Shape
+     *
      * @return SVG code for drawing the Shape
      */
     public String toSVG() {
         return "";
     } // toSVG
-    
-    /** Output SVG code for the header of the drawing
+
+    /**
+     * Output SVG code for the header of the drawing
+     *
      * @return SVG declaration, viewport etc.
      */
     public String startDrawing() {
-        return
-"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
-"<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.0//EN\"\n" +
-" \"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd\" [\n" +
-" <!ATTLIST svg xmlns:xlink CDATA #FIXED \"http://www.w3.org/1999/xlink\">\n" +
-"]>\n" +
-"<svg width=\"200mm\" height=\"200mm\"\n" +
-"    viewBox=\"0 0 " + MAX_COORD + " " + MAX_COORD + "\" \n" +
-"    xmlns=\"http://www.w3.org/2000/svg\"\n" + 
-"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n" +
-"    >\n" +
-"<title>Shapes</title>\n"
-;
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n"
+                + "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.0//EN\"\n"
+                + " \"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd\" [\n"
+                + " <!ATTLIST svg xmlns:xlink CDATA #FIXED \"http://www.w3.org/1999/xlink\">\n"
+                + "]>\n"
+                + "<svg width=\"" + MAX_X + "mm\" height=\"" + MAX_Y + "mm\"\n"
+                + "    viewBox=\"0 0 " + MAX_X + " " + MAX_Y + "\" \n"
+                + "    xmlns=\"http://www.w3.org/2000/svg\"\n"
+                + "    xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n"
+                + "    >\n"
+                + "<title>Shapes</title>\n";
     } // startDrawing
-    
-    /** Output SVG code for the header of the drawing
+
+    /**
+     * Output SVG code for the header of the drawing
+     *
      * @return SVG declaration, viewport etc.
      */
     public String endDrawing() {
         return "</svg>\n";
     } // endDrawing
-    
-    /** Gets the common <em>style</em> attribute of all Shapes
+
+    /**
+     * Gets the common <em>style</em> attribute of all Shapes
+     *
      * @return style="..."
      */
     public String getStyle() {
         return " style=\"stroke:black; stroke-width:0.1; fill:"
                 + String.format("#%06x", color) + "; "
-                + "fill-opacity:0.8; stroke-opacity:0.8;"
-                + "\" "
-                ;
+                + "fill-opacity:0.9; stroke-opacity:0.9;"
+                + "\" ";
     } // getStyle
-    
-    /** Gets a random integer in some range
+
+    /**
+     * Gets a random integer in some range
+     *
      * @param low lower bound
      * @param high upper bound
      * @return some random number between low and high (including)
      */
-    public int random(int low, int high) {
-        return (new Double(Math.random() * (high + 1) + low)).intValue(); 
-                // Math.random() yields >= 0.0 and < 1.0 
+    public static int random(int low, int high) {
+        return (new Double(Math.random() * (high + 1) + low)).intValue();
+        // Math.random() yields >= 0.0 and < 1.0 
     } // random(int, int)
 
     /**
      * Test program
-     * @param args commandline arguments
+     *
+     * @param args commandline arguments: none, or number of Shapes
      */
     public static void main(String[] args) {
-        if (args.length == 0) { // set default arguments
-            args = new String[] { "", "", "", "" };
-        } // set default arguments
-        Shape shape = new Circle(0x29C939, 40, 40, 25);
+        Shape shape = new Shape();
         System.out.println(shape.startDrawing());
-        System.out.println(shape.toSVG());
-        System.out.println(
-                (new Square(0xEA4337, 30, 30, 15)).toSVG());
-        System.out.println(
-                (new Triangle(0x443344, 50, 50, 20)).toSVG());
+        if (args.length == 0) { // set default arguments
+            shape = new Circle(0x29C939, 40, 40, 25);
+            System.out.println(shape.toSVG());
+            System.out.println(
+                    (new Square(0xEA4337, 30, 30, 15)).toSVG());
+            System.out.println(
+                    (new Triangle(0x443344, 50, 50, 20)).toSVG());
+        } else { // take the number of Shapes
+            ShapeFactory factory = new ShapeFactory();
+            int noShapes = Integer.parseInt(args[0]);
+            while (noShapes > 0) {
+                shape = factory.getShape(random(0, factory.size() - 1));
+                System.out.println(shape.toSVG());
+                noShapes --;
+            } // noShapes
+        } // set default arguments
         System.out.println(shape.endDrawing());
     } // main
-    
+
 } // Shape
