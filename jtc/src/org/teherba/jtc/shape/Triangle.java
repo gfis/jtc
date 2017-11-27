@@ -50,14 +50,26 @@ public class Triangle extends Shape {
     @Override   
     public String toSVG() {
         // <path d="M150 0 L75 200 L225 200 Z" />
-        return "<path d=\""
-                + String.valueOf(centerX - size/2)
-                + "\" y=\""
-                + String.valueOf(centerY - size/2)
-                + "\" height=\"" 
-                + size
-                + "\" width=\"" 
-                + size
+        int height = (int) Math.sqrt(size*size * 3 / 4);
+        int height3 = height / 3;
+        return "<path d=\"M"
+                + String.valueOf(centerX)
+                + " "
+                + String.valueOf(centerY)
+                + " m"
+                + String.valueOf(- size / 2)
+                + " "
+                + String.valueOf(height3)
+                + " l"
+                + String.valueOf(size / 2)
+                + " "
+                + String.valueOf(- height)
+                + " l"
+                + String.valueOf(size / 2)
+                + " "
+                + String.valueOf(+ height)
+                
+                + " Z"
                 + "\""
                 + getStyle()
                 + "/>"

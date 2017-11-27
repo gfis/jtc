@@ -108,7 +108,7 @@ public class Shape {
     public String getStyle() {
         return " style=\"stroke:black; stroke-width:0.1; fill:"
                 + String.format("#%06x", color) + "; "
-                + "fill-opacity:0.9; stroke-opacity:0.9;"
+                + "fill-opacity:0.8; stroke-opacity:0.8;"
                 + "\" "
                 ;
     } // getStyle
@@ -136,6 +136,8 @@ public class Shape {
         System.out.println(shape.toSVG());
         System.out.println(
                 (new Square(0xEA4337, 30, 30, 15)).toSVG());
+        System.out.println(
+                (new Triangle(0x443344, 50, 50, 20)).toSVG());
         System.out.println(shape.endDrawing());
     } // main
     
