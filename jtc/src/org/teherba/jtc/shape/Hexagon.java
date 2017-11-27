@@ -24,12 +24,12 @@ import java.util.Locale;
  * Define a triangle Shape with 3 equal sides
  * @author Georg Fischer &lt;dr.georg.fischer at gmail.com>&gt;
  */
-public class Triangle extends Shape {
+public class Hexagon extends Shape {
     
     /** No-args Constructor
      * 
      */
-    public Triangle() {
+    public Hexagon() {
         super();
     } // Triangle
     
@@ -39,7 +39,7 @@ public class Triangle extends Shape {
      * @param centerY  y coordinate of the center
      * @param size     size of the object
      */
-    public Triangle(int color, int centerX, int centerY, int size) {
+    public Hexagon(int color, int centerX, int centerY, int size) {
         this.color = color;
         this.centerX = centerX;
         this.centerY = centerY;
@@ -51,17 +51,20 @@ public class Triangle extends Shape {
      */
     @Override   
     public String toSVG() {
-        // <path d="M150 0 L75 200 L225 200 Z" />
         Double dSize2  = size / 2.0;
-        Double dHeight = Math.sqrt(size * size * 3.0 / 4.0); 
+        Double dHeight = Math.sqrt(dSize2 * dSize2 * 3.0 / 4.0); 
         String height  = String.format(Locale.ROOT, "%.2f ", dHeight);
         String height3 = String.format(Locale.ROOT, "%.2f ", dHeight / 3.0);
         String size2   = String.format(Locale.ROOT, "%.2f ", dSize2);
-        return "<!--Triangle--><path d=\""
+        String size4   = String.format(Locale.ROOT, "%.2f ", dSize2 / 2.0);
+        return "<!--Hexagon--><path d=\""
                 + "M" + centerX + " " + centerY // absolute move to center
-                + " m-" + size2 + "+" + height3 // relative move lower left corner
-                + " l"  + size2 + "-" + height // relative line to upper corner
-                + " l"  + size2 + "+" + height // lower right corner
+                + " m-" + height + "+" + size4 // relative move to lower left corner
+                + " l"  + "0"    + "-" + size2 // upper left corner
+                + " l"  + height + "-" + size4 // top corner
+                + " l"  + height + "+" + size4 // upper right corner
+                + " l"  + "0"    + "+" + size2 // lower right corner
+                + " l-" + height + "+" + size4 // bottom corner
                 + " Z" // close path
                 + "\" " + getStyle() + "/>";
     } // toSVG 

@@ -18,7 +18,7 @@
 package org.teherba.jtc.shape;
 
 /**
- * General class for geomatrical shapes.
+ * General class for geometrical shapes.
  *
  * @author Georg Fischer &lt;dr.georg.fischer at gmail.com>&gt;
  */
@@ -160,6 +160,8 @@ public class Shape {
                     (new Square(0xEA4337, 30, 30, 15)).toSVG());
             System.out.println(
                     (new Triangle(0x443344, 50, 50, 20)).toSVG());
+            System.out.println(
+                    (new Hexagon(0xee33ff, 60, 60, 20)).toSVG());
         } else { // take the number of Shapes
             ShapeFactory factory = new ShapeFactory();
             int noShapes = Integer.parseInt(args[0]);

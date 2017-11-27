@@ -35,6 +35,7 @@ public class ShapeFactory {
                 { "Circle"
                 , "Square"
                 , "Triangle"
+                , "Hexagon"
                 };
          // + Diamond, Pentagon, Hexagon etc.
     } // Shape
