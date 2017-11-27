@@ -108,7 +108,7 @@ public class Shape {
     public String getStyle() {
         return " style=\"stroke:black; stroke-width:0.1; fill:"
                 + String.format("#%06x", color) + "; "
-                + "fill-opacity:0.1; stroke-opacity:0.9;"
+                + "fill-opacity:0.9; stroke-opacity:0.9;"
                 + "\" "
                 ;
     } // getStyle
@@ -131,7 +131,7 @@ public class Shape {
         if (args.length == 0) { // set default arguments
             args = new String[] { "", "", "", "" };
         } // set default arguments
-        Shape shape = new Circle(0x29C939, 50, 50, 20);
+        Shape shape = new Circle(0x29C939, 40, 40, 25);
         System.out.println(shape.startDrawing());
         System.out.println(shape.toSVG());
         System.out.println(

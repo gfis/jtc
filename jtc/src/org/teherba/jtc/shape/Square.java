@@ -38,8 +38,11 @@ public class Square extends Shape {
      * @param size     size of the object
      */
     public Square(int color, int centerX, int centerY, int size) {
-        super(color, centerX, centerY, size);
-,    } // Square
+        this.color = color;
+        this.centerX = centerX;
+        this.centerY = centerY;
+        this.size = size;
+    } // Square
 
     /** Output SVG code for the Circle
      * @return SVG code for drawing the Shape

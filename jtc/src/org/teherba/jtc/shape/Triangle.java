@@ -38,7 +38,10 @@ public class Triangle extends Shape {
      * @param size     size of the object
      */
     public Triangle(int color, int centerX, int centerY, int size) {
-       super(color, centerX, centerY, size);
+        this.color = color;
+        this.centerX = centerX;
+        this.centerY = centerY;
+        this.size = size;
     } // Shape
 
     /** Output SVG code for the Triangle
