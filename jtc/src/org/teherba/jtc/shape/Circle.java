@@ -38,7 +38,7 @@ public class Circle extends Shape {
      */
     public Circle(int color, int centerX, int centerY, int size) {
         super(color, centerX, centerY, size);
-,    } // Circle
+    } // Circle
 
     /** Output SVG code for the Circle
      * @return SVG code for drawing the Shape
@@ -51,7 +51,7 @@ public class Circle extends Shape {
                 + "\" cy=\""
                 + centerY
                 + "\" r=\"" 
-                + size
+                + String.valueOf(size / 2)
                 + "\""
                 + getStyle()
                 + "/>"

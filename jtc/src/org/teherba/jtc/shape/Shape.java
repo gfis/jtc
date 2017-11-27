@@ -107,7 +107,8 @@ public class Shape {
      */
     public String getStyle() {
         return " style=\"stroke:black; stroke-width:0.1; fill:"
-                + String.format("#%06x", color)
+                + String.format("#%06x", color) + "; "
+                + "fill-opacity:0.1; stroke-opacity:0.9;"
                 + "\" "
                 ;
     } // getStyle
