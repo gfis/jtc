@@ -32,8 +32,14 @@ import java.util.regex.Pattern;
  */
 public class CheckIBAN {
     
+    /** String of characters */
     public static String CHARACTER = "ABCDEFGHIJKLMNOPKRSTUVWXYZ";
     
+    /** Associate the country code with IBAn length
+     * 
+     * @param iban the IBAN code to check
+     * @return the length of IBAN
+     */
     public static int checkCountry(String iban){
         int result = 0;
         switch(iban.substring(0,2)){
