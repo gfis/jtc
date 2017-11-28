@@ -275,15 +275,7 @@ public class CheckIBANSwing extends JFrame {
     }//GEN-LAST:event_exitForm
 
     private void matchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matchButtonActionPerformed
-        expressionText = regexText.getText();
-        matchText = testText.getText();
-        if (matchText.matches(expressionText)) {
-            messageText.setText("true");
-        } else {
-            messageText.setText("false");
-        }
-        getRootPane().setDefaultButton(matchButton);
-        testText.requestFocusInWindow();
+
     }//GEN-LAST:event_matchButtonActionPerformed
 
     private void regexTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regexTextActionPerformed
