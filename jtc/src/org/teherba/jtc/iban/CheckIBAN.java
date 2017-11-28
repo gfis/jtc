@@ -71,12 +71,12 @@ public class CheckIBAN {
         return result;
     }
     
+    
     public static String process(String iban){
         String result = "";
         String ibanStart = "";
         String ibanEnd = "";
         iban = iban.replaceAll("\\s+", "");
-        checkCountry(iban);
         
         if(iban.length() == checkCountry(iban)){
            ibanStart = iban.substring(0,4);
