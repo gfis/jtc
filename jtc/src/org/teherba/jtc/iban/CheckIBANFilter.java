@@ -41,7 +41,7 @@ public class CheckIBANFilter {
     public void process(String line) {
         String checkResult = " ";
         System.out.println(line + " " + checkResult);
-    } // 
+    } // process
 
     public static void main(String[] args) {
         CheckIBANFilter filter = new CheckIBANFilter();
