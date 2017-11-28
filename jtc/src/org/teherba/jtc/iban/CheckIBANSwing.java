@@ -109,12 +109,10 @@ public class CheckIBANSwing extends JFrame {
      * No-args constructor: creates new form for Nim game
      */
     public CheckIBANSwing() {
-        expressionText = "";
-        matchText = "";
         initComponents();
-        getRootPane().setDefaultButton(matchButton);
+        getRootPane().setDefaultButton(checkButton);
         pack();
-        regexText.requestFocusInWindow();
+        checkText.requestFocusInWindow();
         // Center in the screen
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension frameSize = getSize();
@@ -136,10 +134,10 @@ public class CheckIBANSwing extends JFrame {
         jMenu2 = new javax.swing.JMenu();
         mainPanel = new javax.swing.JPanel();
         computeLabel = new javax.swing.JLabel();
-        regexText = new javax.swing.JTextField();
+        checkText = new javax.swing.JTextField();
         messageText = new javax.swing.JLabel();
         buttonsPanel = new javax.swing.JPanel();
-        matchButton = new javax.swing.JButton();
+        checkButton = new javax.swing.JButton();
         mainMenu = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         aboutMenuItem = new javax.swing.JMenuItem();
@@ -172,11 +170,11 @@ public class CheckIBANSwing extends JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 12, 6);
         mainPanel.add(computeLabel, gridBagConstraints);
 
-        regexText.setColumns(20);
-        regexText.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        regexText.addActionListener(new java.awt.event.ActionListener() {
+        checkText.setColumns(20);
+        checkText.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        checkText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                regexTextActionPerformed(evt);
+                checkTextActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -184,7 +182,7 @@ public class CheckIBANSwing extends JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 12, 0);
-        mainPanel.add(regexText, gridBagConstraints);
+        mainPanel.add(checkText, gridBagConstraints);
 
         messageText.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         messageText.setText(" ");
@@ -199,14 +197,14 @@ public class CheckIBANSwing extends JFrame {
         buttonsPanel.setBackground(new java.awt.Color(255, 255, 204));
         buttonsPanel.setLayout(new java.awt.GridBagLayout());
 
-        matchButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        matchButton.setMnemonic('E');
-        matchButton.setText("Check IBAN");
-        matchButton.setToolTipText("Check the answer");
-        matchButton.setActionCommand("Validate IBAN");
-        matchButton.addActionListener(new java.awt.event.ActionListener() {
+        checkButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        checkButton.setMnemonic('E');
+        checkButton.setText("Check IBAN");
+        checkButton.setToolTipText("Check the answer");
+        checkButton.setActionCommand("Validate IBAN");
+        checkButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                matchButtonActionPerformed(evt);
+                checkButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -215,7 +213,7 @@ public class CheckIBANSwing extends JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 6);
-        buttonsPanel.add(matchButton, gridBagConstraints);
+        buttonsPanel.add(checkButton, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
@@ -258,13 +256,11 @@ public class CheckIBANSwing extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
-        new AboutTestRegex(this).setVisible(true);
+        new AboutIBAN(this).setVisible(true);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
-    /** The regular expression to be used */
-    private String expressionText;
-    /** The text to be matched */
-    private String matchText;
+    /** The test IBAN to be checked */
+    private String iban;
     
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         System.exit(0);
@@ -274,17 +270,22 @@ public class CheckIBANSwing extends JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitForm
 
-    private void matchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matchButtonActionPerformed
+    private void checkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkButtonActionPerformed
+        iban = checkText.getText();
+        messageText.setText(CheckIBAN.process(iban));
+        messageText.requestFocusInWindow();
+ 
+    }//GEN-LAST:event_checkButtonActionPerformed
 
-    }//GEN-LAST:event_matchButtonActionPerformed
-
-    private void regexTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regexTextActionPerformed
+    private void checkTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_regexTextActionPerformed
+    }//GEN-LAST:event_checkTextActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JPanel buttonsPanel;
+    private javax.swing.JButton checkButton;
+    private javax.swing.JTextField checkText;
     private javax.swing.JLabel computeLabel;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
@@ -293,9 +294,7 @@ public class CheckIBANSwing extends JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar mainMenu;
     private javax.swing.JPanel mainPanel;
-    private javax.swing.JButton matchButton;
     private javax.swing.JLabel messageText;
-    private javax.swing.JTextField regexText;
     // End of variables declaration//GEN-END:variables
 
 }

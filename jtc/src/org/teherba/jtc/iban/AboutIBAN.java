@@ -70,7 +70,7 @@ public class AboutIBAN extends JDialog {
         closeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("About TestRegex");
+        setTitle("About Cek IBAN");
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         mainPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(11, 11, 12, 12));
