@@ -97,12 +97,14 @@ public class CheckIBAN {
                 iban2 = iban2.replaceAll(iban2.substring(start, end), String.valueOf(CHARACTER.indexOf(iban2.substring(start, end)) + 10));
                 mat = pat.matcher(iban2);
             } // whjile
-            BigInteger count = new BigInteger(iban2);
+            BigInteger count = new BigInteger(iban2).mod(BigInteger.valueOf(97));
 
-            if (count.mod(BigInteger.valueOf(97)).intValue() == 1) { // if IBAn is valid
-                result = iban + " is true";
+            if (count.intValue() == 1) { // if IBAn is valid
+                result = "is true";
             } else { // if IBAN is not valid
-                result = iban + " is false";
+                ibanStart = iban.substring(0,2) + String.valueOf(Integer.parseInt(iban.substring(2,4)) - (count.intValue() - 1));
+                iban = ibanStart + ibanEnd;
+                result = "is false, it must be " + iban ;
             } // if(IBAN is valid)
         } else { // if the length is wrong
             result = "Wrong Number";
@@ -117,7 +119,7 @@ public class CheckIBAN {
      */
     public static void main(String[] args) {
         if (args.length == 0) { // set default arguments
-            args = new String[]{"DE44 5001 0517 5407 3249 31"};
+            args = new String[]{"DE89420300436410240006"};
         } // set default arguments
         String iban = args[0];
         System.out.println(process(iban));
