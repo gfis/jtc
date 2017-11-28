@@ -39,7 +39,13 @@ public class CheckIBANFilter {
      * [state] tab [IBAN code]
      */
     public void process(String line) {
-        String checkResult = " ";
+        String checkResult = "";
+        checkResult = CheckIBAN.process(line
+                .replaceAll("\\W", "")
+                .toUpperCase()
+                );
+    /*
+    */
         System.out.println(line + " " + checkResult);
     } // process
 
@@ -64,4 +70,4 @@ public class CheckIBANFilter {
         } // try
    } // method main
 
-} // SearchTown
+} // CheckIBANFilter
