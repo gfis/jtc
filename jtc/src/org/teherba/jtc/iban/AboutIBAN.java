@@ -82,7 +82,7 @@ public class AboutIBAN extends JDialog {
         copyrightTextArea.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         copyrightTextArea.setLineWrap(true);
         copyrightTextArea.setRows(8);
-        copyrightTextArea.setText("IBAN Validator\n\n@mr george @mr septi\n@mr agung  @mr aviez\ncopyright 2017\nwww.teherba.orga\n@ms cece    @ms yani");
+        copyrightTextArea.setText("IBAN Validator\n\nCopyright 2017\n@mr george @mr septi\n@mr agung  @mr aviez\n@ms cece    @ms yani\n");
         copyrightTextArea.setBorder(null);
         copyrightTextArea.setFocusable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
