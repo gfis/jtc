@@ -36,19 +36,13 @@ public class CheckIBANFilter {
      * Process a line, and store it in an ArrayList.
      *
      * @param line input line to be processed, of the following form: 
-     * [town name] tab [number of inhabitants]
+     * [state] tab [IBAN code]
      */
     public void process(String line) {
         String checkResult = " ";
         System.out.println(line + " " + checkResult);
-    } // 
+    } // process
 
-    /*
-     * Test program.
-     * Standard input is <code>jtc/jtc/test/id_kota.lst</code> ; 
-     * Standard output is a sentence giving the number of inhabitants.
-     * @param args commandline arguments: inputfile town_name
-     */
     public static void main(String[] args) {
         CheckIBANFilter filter = new CheckIBANFilter();
         int iarg = 0;
