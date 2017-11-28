@@ -88,21 +88,21 @@ public class CheckIBAN {
         if (iban.length() == checkCountry(iban)) { // if the length is correct
             ibanStart = iban.substring(0, 4);
             ibanEnd = iban.substring(4);
-            iban = ibanEnd + ibanStart;
+            String iban2 = ibanEnd + ibanStart;
             Pattern pat = Pattern.compile("[A-Z]");
-            Matcher mat = pat.matcher(iban);
+            Matcher mat = pat.matcher(iban2);
             while (mat.find()) {
                 int start = mat.start();
                 int end = mat.end();
-                iban = iban.replaceAll(iban.substring(start, end), String.valueOf(CHARACTER.indexOf(iban.substring(start, end)) + 10));
-                mat = pat.matcher(iban);
+                iban2 = iban2.replaceAll(iban2.substring(start, end), String.valueOf(CHARACTER.indexOf(iban2.substring(start, end)) + 10));
+                mat = pat.matcher(iban2);
             } // whjile
-            BigInteger count = new BigInteger(iban);
+            BigInteger count = new BigInteger(iban2);
 
             if (count.mod(BigInteger.valueOf(97)).intValue() == 1) { // if IBAn is valid
-                result = "true";
+                result = iban + " is true";
             } else { // if IBAN is not valid
-                result = "false";
+                result = iban + " is false";
             } // if(IBAN is valid)
         } else { // if the length is wrong
             result = "Wrong Number";
