@@ -88,6 +88,7 @@ public class WalkFileTree
             Files.walkFileTree(path, new WalkFileTree());
         } catch (Exception exc) {
             System.err.println(exc.getMessage());
+            exc.printStackTrace();
         }
     } // main
 
