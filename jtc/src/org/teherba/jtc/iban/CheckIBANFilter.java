@@ -21,22 +21,20 @@ package org.teherba.jtc.iban;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 
 /**
- * Read lines with words and colorize them for several languages.
+ * Read lines IBANs and checks them for proper checkdigits.
  *
  * @author Georg Fischer &lt;dr.georg.fischer at gmail.com>&gt;
  */
 public class CheckIBANFilter {
     
     /**
-     * Process a line, and store it in an ArrayList.
+     * Process a line with a single IBAN., and store it in an ArrayList.
+     * Remove any non-word characters, and convert the letters to uppercase.
+     * Prints the original number, the correct check digits, and a message
      *
-     * @param line input line to be processed, of the following form: 
-     * [state] tab [IBAN code]
+     * @param line input line with a single IBAN to be processed
      */
     public void process(String line) {
         String checkResult = "";
@@ -44,12 +42,13 @@ public class CheckIBANFilter {
                 .replaceAll("\\W", "")
                 .toUpperCase()
                 );
-    /*
-    */
         System.out.println(line + " " + checkResult);
     } // process
 
     public static void main(String[] args) {
+        if (args.length == 0) { // no argements
+            args = new String[] {"jtc/jtc/test/iban.txt" };
+        }
         CheckIBANFilter filter = new CheckIBANFilter();
         int iarg = 0;
         try {
